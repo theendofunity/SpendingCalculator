@@ -23,6 +23,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         
         spendTableView.dataSource = self
+        spendTableView.delegate = self
+        
+        updateButtonsState()
     }
 
     @IBAction func add(_ sender: UIButton) {
@@ -32,12 +35,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         spends.append((itemName, prise))
-        spendTableView.reloadData()
+        updateView()
     }
     
     @IBAction func clear(_ sender: UIButton) {
         spends.removeAll()
+        updateView()
+    }
+    
+    @IBAction func checkInput(_ sender: UITextField) {
+        updateButtonsState()
+    }
+    
+    func calculateTotalSpending() {
+        var total = 0
+        
+        for spend in spends {
+            total += spend.prise
+        }
+        totalLabel.text = "\(total)"
+    }
+    
+    func updateView() {
         spendTableView.reloadData()
+        calculateTotalSpending()
+        updateButtonsState()
+    }
+    
+    func updateButtonsState() {
+        print("updateButtonsState")
+        if spendTableView.numberOfRows(inSection: 0) == 0 {
+            clearButton.isEnabled = false
+        } else {
+            clearButton.isEnabled = true
+        }
+        let hasText = itemTextEdit.hasText && priseTextEdit.hasText
+        print(hasText)
+        if itemTextEdit.hasText && priseTextEdit.hasText {
+            addButton.isEnabled = true
+        } else {
+            addButton.isEnabled = false
+        }
     }
     
     //MARK: - Table view data sourse
