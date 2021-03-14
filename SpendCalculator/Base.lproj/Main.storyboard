@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Leha's spending calculator-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Leha's spending calculator" id="BYZ-38-t0r" customClass="ViewController" customModule="SpendCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpendCalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b1F-RZ-fZb">
                                                 <rect key="frame" x="0.0" y="44" width="250" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -67,6 +67,20 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QYO-7D-SUK">
                                 <rect key="frame" x="20" y="261" width="374" height="466"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="spendCell" id="4eB-gb-SN5">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4eB-gb-SN5" id="thb-AP-UXx">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="gRi-Z4-L58"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="agC-6n-NWa"/>
+                                </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="vor-tn-Avc">
                                 <rect key="frame" x="175.5" y="754" width="63.5" height="67.5"/>
@@ -97,6 +111,7 @@
                                 <state key="normal" title="Clear"/>
                                 <connections>
                                     <action selector="add:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TCf-Le-6Rs"/>
+                                    <action selector="clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jLi-bF-84J"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -126,6 +141,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="YXC-0r-Tz3" id="Cx9-jb-ktX"/>
+                        <outlet property="clearButton" destination="dkv-Ff-hG8" id="sCU-9a-2Go"/>
                         <outlet property="itemTextEdit" destination="Iam-aJ-OHJ" id="yxq-hd-xsK"/>
                         <outlet property="priseTextEdit" destination="b1F-RZ-fZb" id="Ost-Dc-D5e"/>
                         <outlet property="spendTableView" destination="QYO-7D-SUK" id="n6Z-5B-JeZ"/>
