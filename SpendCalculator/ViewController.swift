@@ -60,6 +60,8 @@ class ViewController: UIViewController {
         spendTableView.reloadData()
         calculateTotalSpending()
         updateButtonsState()
+        itemTextEdit.text?.removeAll()
+        priseTextEdit.text?.removeAll()
     }
     
     func updateButtonsState() {
