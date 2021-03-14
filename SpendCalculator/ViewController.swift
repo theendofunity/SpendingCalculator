@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var itemTextEdit: UITextField!
     @IBOutlet weak var priseTextEdit: UITextField!
@@ -63,21 +63,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func updateButtonsState() {
-        print("updateButtonsState")
         if spendTableView.numberOfRows(inSection: 0) == 0 {
             clearButton.isEnabled = false
         } else {
             clearButton.isEnabled = true
         }
-        let hasText = itemTextEdit.hasText && priseTextEdit.hasText
-        print(hasText)
+        
         if itemTextEdit.hasText && priseTextEdit.hasText {
             addButton.isEnabled = true
         } else {
             addButton.isEnabled = false
         }
     }
-    
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     //MARK: - Table view data sourse
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,4 +97,3 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
 }
-
